@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DayOne PDF Editor</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>Simple PDF Editor</h1>
+        <p>Upload a PDF, make small edits, and download the updated file.</p>
+      </header>
+
+      <section class="panel">
+        <h2>1) Load PDF</h2>
+        <input id="pdfInput" type="file" accept="application/pdf" />
+        <p id="fileInfo">No file loaded.</p>
+      </section>
+
+      <section class="panel">
+        <h2>2) Edit</h2>
+        <div class="controls">
+          <button id="rotateBtn" disabled>Rotate all pages +90°</button>
+        </div>
+
+        <form id="textForm" class="form-grid">
+          <h3>Add Text</h3>
+          <label>
+            Page
+            <input id="textPage" type="number" min="1" value="1" required />
+          </label>
+          <label>
+            X
+            <input id="textX" type="number" min="0" value="50" required />
+          </label>
+          <label>
+            Y
+            <input id="textY" type="number" min="0" value="700" required />
+          </label>
+          <label>
+            Font size
+            <input id="textSize" type="number" min="6" value="18" required />
+          </label>
+          <label class="full-width">
+            Text
+            <input id="textValue" type="text" placeholder="Type text to stamp" required />
+          </label>
+          <button id="addTextBtn" type="submit" disabled>Add text</button>
+        </form>
+
+        <form id="deleteForm" class="form-inline">
+          <label>
+            Delete page #
+            <input id="deletePage" type="number" min="1" value="1" required />
+          </label>
+          <button id="deleteBtn" type="submit" disabled>Delete page</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>3) Preview</h2>
+        <label>
+          Preview page
+          <input id="previewPage" type="number" min="1" value="1" />
+        </label>
+        <button id="previewBtn" disabled>Render page preview</button>
+        <canvas id="previewCanvas" width="595" height="842"></canvas>
+      </section>
+
+      <section class="panel">
+        <h2>4) Save</h2>
+        <button id="downloadBtn" disabled>Download edited PDF</button>
+        <p id="status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </body>
+</html>
